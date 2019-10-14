@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ncut.flinkserver.dao.CityDao">
+    <resultMap id="BaseResultMap" type="cn.ncut.flinkserver.entity.City">
+        <result column="city_id" jdbcType="SMALLINT" property="cityId" />
+        <result column="city" jdbcType="VARCHAR" property="city" />
+        <result column="country_id" jdbcType="SMALLINT" property="countryId" />
+        <result column="last_update" jdbcType="TIMESTAMP" property="lastUpdate" />
+    </resultMap>
+<!--    <select id="getCityListByCountryId" parameterType="java.lang.Integer" resultType="cn.ncut.flinkserver.entity.City">-->
+    <select id="getCityListByCountryId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select *
+        from city
+        where country_id = #{countryId}
+    </select>
+</mapper>
